@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+	<script src="p5.min.js"></script>
+	<script src="p5.dom.min.js"></script>
+	<script type="text/javascript" src="sketch.js"></script>
+	<script type="text/javascript" src="Population.js"></script>
+	<script type="text/javascript" src="Polygon.js"></script>
+	<script type="text/javascript" src="DNA.js"></script>
+	
+</head>
+<body>
+<canvas id="refCanvas" class="picture" width="200" height="200">
+</canvas>
+<canvas id="fittestCanvas" class="picture" width="200" height="200">
+</canvas>
+<img src="download_or.png" id="refImage" style="width:200px;height:200px;display:none">
+
+<script type="text/javascript">
+		refImage = $('#refImage')[0];
+		refCanvas = $('#refCanvas')[0];
+		refCtx = refCanvas.getContext('2d');
+		refCtx.drawImage(refImage, 0, 0, 200, 200, 0, 0, 200, 200);
+	</script>
+</body>
+</html>
