@@ -18,21 +18,30 @@ function setup(){
 	c = document.getElementById("defaultCanvas0");
 	workingCtx = c.getContext("2d");
 	c.style.display = "none"
+
 	c = document.getElementById("fittestCanvas");
 	fittestCtx = c.getContext("2d");
-	var array  = [1,2,3];
-	var array2 = [4,5,6];
 
 	pop = new Population(maxpop);
+
+	// pop = new Population(maxpop);
+	// pop.calculateFitness();
+
 	fit = createP();
+
 }
 
 
 function draw(){
+	// pop.produceChild();
+	// pop.population[0].drawToASpecificContext(fittestCtx);
+
+
 	pop.calculateFitness();
 	pop.sortFitness();
 	pop.population[0].drawToASpecificContext(fittestCtx);
-	fit.html(pop.population[0].fitness*100);
-	pop.selection();
 	
+	fit.html(pop.population[0].fitness*100);
+	
+	pop.selection();
 }
