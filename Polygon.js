@@ -15,10 +15,10 @@ function Polygon(dna){
 		for(var i = 0; i < dnaLength; i+=geneSize){
 			beginShape();
 				for(var j = i+4; j < i+geneSize; j+=2){
-					vertex(this.dna.genes[j], this.dna.genes[j+1]);
+					vertex((this.dna.genes[j] * 200) >> 0, (this.dna.genes[j+1] * 200) >> 0);
 				}
 				noStroke();
-				fill(this.dna.genes[i], this.dna.genes[i+1], this.dna.genes[i+2], this.dna.genes[i+3])
+				fill((this.dna.genes[i] * 255) >> 0, (this.dna.genes[i+1] * 255) >> 0, (this.dna.genes[i+2] * 255) >> 0, (this.dna.genes[i+3] * 255) >> 0);
 			endShape();
 		}
 	}
@@ -38,22 +38,20 @@ function Polygon(dna){
 
 	this.drawToASpecificContext = function(context){
 		context.clearRect(0, 0, 200, 200);
-		// context.fillStyle = "#FFF";
-		// context.fillRect(0, 0, 200, 200);
 		for(var i = 0; i < dnaLength; i+=geneSize){
 			context.beginPath();
-			context.moveTo(this.dna.genes[i + 4], this.dna.genes[i + 5]);
+			context.moveTo((this.dna.genes[i + 4] * 200) >> 0, (this.dna.genes[i + 5] * 200) >> 0);
 
 			for(var j = i+6; j < i+geneSize; j+=2){
-				context.lineTo(this.dna.genes[j], this.dna.genes[j+1]);
+				context.lineTo((this.dna.genes[j] * 200) >> 0, (this.dna.genes[j+1] * 200) >> 0);
 			}
 			context.closePath();	
 
 			var styleString = 'rgba(' + 
-				((this.dna.genes[i]) >> 0) + ',' + 
-		        ((this.dna.genes[i+1]) >> 0) + ',' + 
-		        ((this.dna.genes[i+2]) >> 0) + ',' +
-		        (map(this.dna.genes[i+3], 0, 255, 0, 1)) + ')';
+				((this.dna.genes[i] * 255) >> 0) + ',' + 
+		        ((this.dna.genes[i+1] * 255) >> 0) + ',' + 
+		        ((this.dna.genes[i+2] * 255) >> 0) + ',' +
+		        (this.dna.genes[i+3]) + ')';
 		    context.fillStyle = styleString;
 		    context.fill();
 		}

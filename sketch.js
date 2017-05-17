@@ -41,7 +41,7 @@ function draw(){
 	pop.sortFitness();
 	pop.population[0].drawToASpecificContext(fittestCtx);
 	
-	fit.html(pop.population[0].fitness*100);
+	fit.html(Math.round(pop.population[0].fitness*10000)/100);
 	
 	pop.selection();
 }
