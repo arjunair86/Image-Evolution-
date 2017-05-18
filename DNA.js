@@ -30,18 +30,6 @@ function DNA(genes){
 				newgenes.push(chromosome);
 			}
 		}
-		return new Polygon(new DNA(newgenes));
-	}
-}
-
-function randomRGBA(){
-	if(ceil(random() * 4) == 1){
-		return 'r';
-	} else if(ceil(random() * 4) == 2){
-		return 'g';
-	} else if (ceil(random() * 4) == 3){
-		return 'b';
-	} else {
-		return 'a';
+		return (new DNA(newgenes));
 	}
 }

@@ -19,7 +19,6 @@ function Population(maxpop){
 	this.selection = function(){
 		//truncation selection
 		var newPopulation = [];
-		// (this.population[0].fitness < 95) ? selectionCutOff = 0.15: selectionCutOff = 0.10;
 		for(var i = 0; i < (maxpop * selectionCutOff); i++){
 			var partnerA = this.population[i];
 			for(var j = 0; j < ceil(1 / selectionCutOff); j++){
@@ -27,7 +26,7 @@ function Population(maxpop){
 				while(partnerB == i)
 					randInd = (random(maxpop) * selectionCutOff) >> 0;
 				var partnerB = this.population[randInd];
-				var child = partnerA.dna.breed(partnerB.dna);
+				var child = partnerA.breed(partnerB);
 				newPopulation.push(child);	
 			}
 		}

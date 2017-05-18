@@ -1,8 +1,6 @@
 var pop;
 var maxpop = 50;
-var pop = [];
-var pix;
-var i, c,ctx,data, workingCtx, fittestCtx;
+var c, ctx, data, workingCtx, fittestCtx;
 var fit;
 var lastBestFitness = 0;
 var lastBestFitPolygon = null;

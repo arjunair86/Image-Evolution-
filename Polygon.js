@@ -36,6 +36,11 @@ function Polygon(dna){
 		this.fitness = 1 - diff / (200 * 200 * 4 * 255 * 255);
 	}
 
+	this.breed = function(parent){
+		var child = this.dna.breed(parent.dna);
+		return (new Polygon(child));
+	}
+
 	this.drawToASpecificContext = function(context){
 		context.clearRect(0, 0, 200, 200);
 		for(var i = 0; i < dnaLength; i+=geneSize){
@@ -55,12 +60,5 @@ function Polygon(dna){
 		    context.fillStyle = styleString;
 		    context.fill();
 		}
-	}
-
-	this.copy = function(){
-		var copyDna = this.dna;
-		var copyFitness = this.fitness;
-		var clonedObject = new Polygon(copyDna, copyFitness);
-		return clonedObject;
 	}
 }
