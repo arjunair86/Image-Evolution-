@@ -1,5 +1,5 @@
-var vertices = 3;
-var noOfPolygons = 125;
+var vertices = 6;
+var noOfPolygons = 50;
 var geneSize = 4 + (vertices * 2);
 var dnaLength = noOfPolygons * geneSize;
 

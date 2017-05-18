@@ -1,3 +1,5 @@
+var selectionCutOff = 0.15// 15%
+
 function Population(maxpop){
 	this.population = [];
 
@@ -15,13 +17,15 @@ function Population(maxpop){
 	}
 
 	this.selection = function(){
+		//truncation selection
 		var newPopulation = [];
-		for(var i = 0; i < floor(maxpop*0.15); i++){
+		// (this.population[0].fitness < 95) ? selectionCutOff = 0.15: selectionCutOff = 0.10;
+		for(var i = 0; i < (maxpop * selectionCutOff); i++){
 			var partnerA = this.population[i];
-			for(var j = 0; j < ceil(1/0.15); j++){
+			for(var j = 0; j < ceil(1 / selectionCutOff); j++){
 				var randInd = i;
 				while(partnerB == i)
-					randInd = (random(maxpop) * 0.15) >> 0;
+					randInd = (random(maxpop) * selectionCutOff) >> 0;
 				var partnerB = this.population[randInd];
 				var child = partnerA.dna.breed(partnerB.dna);
 				newPopulation.push(child);	
@@ -29,18 +33,6 @@ function Population(maxpop){
 		}
 		this.population = newPopulation;
 	}
-
-	this.acceptReject = function(maxFitness){
-		while(true){
-			var index = floor(random(this.population.length))
-			var partner = this.population[index];
-			var r = random(maxFitness);
-			if(r < partner.fitness){
-				return partner;
-			}
-		}
-	}
-
 }
 
 function compare(a,b) {

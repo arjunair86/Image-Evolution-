@@ -4,11 +4,12 @@ var pop = [];
 var pix;
 var i, c,ctx,data, workingCtx, fittestCtx;
 var fit;
+var lastBestFitness = 0;
+var lastBestFitPolygon = null;
 
 function preload(){
 	c = document.getElementById("refCanvas");
 	ctx = c.getContext("2d");
-	ctx.scale(2,2)
 	data = ctx.getImageData(0, 0, 200, 200);
 }
 
@@ -24,21 +25,19 @@ function setup(){
 
 	pop = new Population(maxpop);
 
-	// pop = new Population(maxpop);
-	// pop.calculateFitness();
-
 	fit = createP();
 
 }
 
 
 function draw(){
-	// pop.produceChild();
-	// pop.population[0].drawToASpecificContext(fittestCtx);
-
-
 	pop.calculateFitness();
 	pop.sortFitness();
+	if(pop.population[0].fitness < lastBestFitness){
+		pop.population[0] = lastBestFitPolygon;
+	}
+	lastBestFitPolygon = pop.population[0];
+	lastBestFitness = pop.population[0].fitness;
 	pop.population[0].drawToASpecificContext(fittestCtx);
 	
 	fit.html(Math.round(pop.population[0].fitness*10000)/100);
