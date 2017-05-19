@@ -16,7 +16,7 @@ function Population(maxpop){
 		this.population.sort(compare);
 	}
 
-	this.selection = function(){
+	/*this.selection = function(){
 		//truncation selection
 		var newPopulation = [];
 		for(var i = 0; i < (maxpop * selectionCutOff); i++){
@@ -31,6 +31,9 @@ function Population(maxpop){
 			}
 		}
 		this.population = newPopulation;
+	}*/
+	this.selection = function(){
+		this.population[0] = this.population[0].breed();
 	}
 }
 

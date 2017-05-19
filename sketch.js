@@ -1,5 +1,5 @@
 var pop;
-var maxpop = 50;
+var maxpop = 1;
 var c, ctx, data, workingCtx, fittestCtx;
 var fit;
 var lastBestFitness = 0;
@@ -22,6 +22,9 @@ function setup(){
 	fittestCtx = c.getContext("2d");
 
 	pop = new Population(maxpop);
+	pop.calculateFitness();
+		console.log("initi:", pop.population[0]);
+	
 
 	fit = createP();
 
@@ -29,16 +32,20 @@ function setup(){
 
 
 function draw(){
-	pop.calculateFitness();
-	pop.sortFitness();
-	if(pop.population[0].fitness < lastBestFitness){
-		pop.population[0] = lastBestFitPolygon;
-	}
-	lastBestFitPolygon = pop.population[0];
-	lastBestFitness = pop.population[0].fitness;
+	// pop.calculateFitness();
+	// pop.sortFitness();
+	// if(pop.population[0].fitness < lastBestFitness){
+	// 	pop.population[0] = lastBestFitPolygon;
+	// }
+	// lastBestFitPolygon = pop.population[0];
+	// lastBestFitness = pop.population[0].fitness;
+	// pop.population[0].drawToASpecificContext(fittestCtx);
+	
+	// fit.html(Math.round(pop.population[0].fitness*10000)/100);
+	
+	// pop.selection();
 	pop.population[0].drawToASpecificContext(fittestCtx);
-	
 	fit.html(Math.round(pop.population[0].fitness*10000)/100);
-	
 	pop.selection();
+
 }

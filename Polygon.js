@@ -3,11 +3,14 @@ var noOfPolygons = 50;
 var geneSize = 4 + (vertices * 2);
 var dnaLength = noOfPolygons * geneSize;
 
-function Polygon(dna){
+function Polygon(dna, fitness){
 
-	if(dna){
+	if(dna && fitness){
 		this.dna = dna;
-	} else {
+		this.fitness = fitness;
+	} else if(dna){
+		this.dna = dna;
+	} else{
 		this.dna = new DNA();
 	}
 
@@ -36,9 +39,25 @@ function Polygon(dna){
 		this.fitness = 1 - diff / (200 * 200 * 4 * 255 * 255);
 	}
 
-	this.breed = function(parent){
+	/*this.breed = function(parent){
 		var child = this.dna.breed(parent.dna);
 		return (new Polygon(child));
+	}*/
+	this.breed = function(){
+		var cloneParent = this.clone();
+		var child = this.dna.breed();
+		var childPolygon = new Polygon(child);
+		childPolygon.calculateFitness();
+		if(childPolygon.fitness > this.fitness){
+			return childPolygon;
+		} else {
+			return cloneParent;
+		}
+	}
+	this.clone = function(){
+		var cloneDNA = this.dna;
+		var cloneFitness = this.fitness;
+		return (new Polygon(cloneDNA, cloneFitness));
 	}
 
 	this.drawToASpecificContext = function(context){
