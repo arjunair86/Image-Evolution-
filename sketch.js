@@ -23,9 +23,7 @@ function setup(){
 
 	pop = new Population(maxpop);
 	pop.calculateFitness();
-		console.log("initi:", pop.population[0]);
 	
-
 	fit = createP();
 
 }
@@ -45,7 +43,7 @@ function draw(){
 	
 	// pop.selection();
 	pop.population[0].drawToASpecificContext(fittestCtx);
-	fit.html(Math.round(pop.population[0].fitness*10000)/100);
+	bestFitness = Math.round(pop.population[0].fitness*10000)/100;
+	fit.html(bestFitness);
 	pop.selection();
-
 }
